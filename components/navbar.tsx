@@ -2,10 +2,13 @@
 
 import { useScrollTop } from "@/hooks/use-scroll-top";
 import { cn } from "@/lib/utils";
+import Link from "next/link";
+import { useState } from "react";
 
 
 export const Navbar = () => {
     const scrolled = useScrollTop();
+    const [activetab, setactivetab] = useState('company');
 
     return (
         <div className={cn(
@@ -14,8 +17,16 @@ export const Navbar = () => {
         )}>
             <div>Recruto</div>
             <div className="md:ml-auto md:justify-end justify-between w-full flex items-center gap-x-[10vh]">        
-                <div>For Company</div>
-                <div>For Talent</div>
+                <div>
+                    <Link href="/">
+                        For Company
+                    </Link>
+                </div>
+                <div>
+                    <Link href="/jobs">
+                        Explore Jobs 
+                    </Link>
+                </div>
                 <div>Login</div>
             </div>
         </div>

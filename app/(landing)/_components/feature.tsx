@@ -20,7 +20,7 @@ export const Feature = () => {
                 </p>
                 <button className="flex items-center justify-center gap-2 bg-[#0085FF] rounded-[7px] h-[40px] text-white pr-[20px] pl-[20px] text-[15px] mb-[30px]"> Hire Talent <ArrowRight size={"15px"} /> </button>
             </div>
-            <div className="lg:w-[25rem] sm:w-[15rem] h-[104rem]">
+            <div className="lg:w-[28rem] sm:w-[15rem] h-[104rem]">
                 <img className="h-[74rem]" src="total.png" alt="" />
             </div>
         </div>
