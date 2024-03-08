@@ -3,7 +3,7 @@
 export const Heading = () => {
 
     return (
-        <div className="lg:flex items-center justify-center max-w-7xl mb-[8rem]">
+        <div className="lg:flex items-center justify-center max-w-[75rem] mb-[8rem]">
             <div className="lg:text-start">
                 <h1 className="text-5xl sm:text-10xl md:text-6xl font-[500]">
                     Find the perfect professional for you

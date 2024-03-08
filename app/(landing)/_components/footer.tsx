@@ -3,7 +3,7 @@
 export const Footer = () => {
 
     return (
-        <div className="lg:flex border items-center justify-center max-w-7xl gap-10 mb-[3rem]">
+        <div className="lg:flex border items-center justify-center max-w-[75rem] gap-10 mb-[3rem]">
             <img src="join.png" alt="" />
             <div className="text-start font-sans ">
                 <h1 className="text-5xl">
