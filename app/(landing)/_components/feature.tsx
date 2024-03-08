@@ -18,7 +18,7 @@ export const Feature = () => {
                 </p>
                 <button className="bg-[#0085FF] rounded-[7px] h-[40px] text-white pr-[20px] pl-[20px] text-[15px]"> Hire Talent -> </button>
             </div>
-            <img className="lg:w-[30rem] sm:w-[2rem]" src="first-scroll.png" alt="" />
+            <img className="lg:w-[30rem] sm:w-[2rem]" src="scroll-1.png" alt="" />
             {/* <img className="lg:w-[30rem] sm:w-[2rem]" src="second-scroll.png" alt="" />
             <img className="lg:w-[30rem] sm:w-[2rem]" src="third-scroll.png" alt="" /> */}
 
