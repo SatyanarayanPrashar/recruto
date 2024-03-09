@@ -1,4 +1,5 @@
 import { Navbar } from "@/components/navbar";
+import { NavbarMobile } from "@/components/navbarMobile";
 
 const MarketingLayout = ({
   children
@@ -7,7 +8,12 @@ const MarketingLayout = ({
 }) => {
   return ( 
     <div className="h-full dark:bg-[#1F1F1F]">
-      <Navbar />
+      <div className="lg:block sm:hidden">
+        <Navbar />
+      </div>
+      <div className="lg:hidden sm:block">
+        <NavbarMobile/>
+      </div>
       <main className="h-full pt-[9rem]">
         {children}
       </main>
