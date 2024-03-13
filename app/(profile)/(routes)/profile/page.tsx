@@ -1,6 +1,5 @@
 "use client";
 
-import { Divide } from "lucide-react";
 import { useState } from "react";
 import { ProfileComp } from "../../_components/profileComp";
 import { Overview } from "../../_components/Overview";
