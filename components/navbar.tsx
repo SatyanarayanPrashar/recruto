@@ -24,7 +24,11 @@ export const Navbar = () => {
                         Explore Jobs
                     </Link>
                 </div>
-                <div>Login</div>
+                <div>
+                    <Link href="/profile">
+                        Profile
+                    </Link>
+                </div>
             </div>
         </div>
     )
