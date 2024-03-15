@@ -11,14 +11,10 @@ const MainLayout = ({
     children: React.ReactNode;
 }) => {
     const [user] = useAuthState(auth);
-
-    if (!user) {
-        return redirect("/");
-    }
     return (
         <div className="">
             <Navbar />
-            <main className="h-full pt-[5rem] mx-[20rem]">
+            <main className="h-full pt-[5rem] lg:mx-[20rem] md:mx-[10rem] sm:mx-[20px]">
                 {children}
             </main>
         </div>

@@ -54,7 +54,7 @@ export const Navbar = () => {
                     <div className="flex items-center justify-end">
                     <div className="relative">
                         <div className="flex items-center cursor-pointer" onClick={() => setShowDropdown(!showDropdown)}>
-                            <Link href="/profile" className="mr-2">
+                            <Link href={`/profile/${user.uid}`} className="mr-2">
                                 Profile
                             </Link>
                             {user.photoURL ? <img className="rounded-[9999px] h-8 w-8" src={user.photoURL} alt="User Profile" /> : <div></div> }

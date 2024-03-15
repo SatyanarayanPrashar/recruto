@@ -33,7 +33,7 @@ export const ProfileComp = () => {
                     <input className="border rounded-lg px-4 w-full h-[40px] focus:outline-none "
                         placeholder="Role you are looking for"
                         value="Frontend Developer"
-                    />                 
+                    />
                 </div>
                 <div>
                     <p className="font-[600] text-[15px]">Bio</p>
