@@ -38,15 +38,7 @@ const Profilepage = () => {
                     Resume/CV
                 </div>
             </div>
-            {activeTab == "Overview" && (
-                <Overview/>
-                )} 
-            {activeTab == "Edit" && (
-                <ProfileComp/>
-                )} 
-            {activeTab == "Resume/CV" && (
-                <Resume/>
-            )} 
+            
             <div className="h-[5rem]"></div>
         </div>
     );
