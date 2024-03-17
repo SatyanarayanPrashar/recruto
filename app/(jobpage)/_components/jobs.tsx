@@ -28,26 +28,30 @@ export const JobSection = () => {
         console.log('i am handle scroll fire once');
         return () => window.removeEventListener('scroll', handleScroll);
     }, [loading]);
-    
+
     useEffect(() => {
-        axios.get(`http://127.0.0.1:8000/api/jobs/?page=${page}`)
-            .then((response) => {
-                console.log("Job data:", response.data.results);
-                setJobContent(prevJobContent => {
-                    if (prevJobContent === null) {
-                        return response.data.results;
-                    } else {
-                        return [...prevJobContent, ...response.data.results];
-                    }
-                });
-                setLoading(false);
-            })
-            .catch((error) => {
-                console.error("Error fetching data:", error);
-                setLoading(false);
-            });
-            console.log('i fire once');
+        // if (!selectedCountry && !selectedHeading) {
+            fetchInitialContent(page);
+        // } else {
+
+        //     fetchFilteredContent(selectedCountry, selectedHeading, page);
+        // }
     }, [page]);
+
+    const fetchInitialContent = async (page: number) => {
+        setLoading(true);
+        const url = `http://127.0.0.1:8000/api/jobs/?page=${page}`;
+
+        try {
+            const response = await axios.get(url);
+            setJobContent(prevContent => [...prevContent, ...response.data.results]);
+            setLoading(false);
+        } catch (error) {
+            console.error('Error fetching initial data:', error);
+            setLoading(false);
+        }
+    };
+    
 
     if (loading) {
         return <div className="w-full flex justify-center"><CircularProgress size="25px" color="secondary" /></div>;
