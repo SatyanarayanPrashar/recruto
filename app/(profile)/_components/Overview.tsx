@@ -60,9 +60,9 @@ export const Overview = ({ user, profile }: { user: User, profile: Profile | nul
                         <div className="flex items-center">
                             <p>{profile?.location}</p>
                             <div className="flex gap-5 hover:cursor-pointer ml-10">
-                                <a href={profile?.linkedin_link} target="_blank" rel="noopener noreferrer"><Linkedin size="18px" color="grey"/></a>
-                                <a href={profile?.github_link} target="_blank" rel="noopener noreferrer"><Github size="18px" color="grey"/></a>
-                                <a href={profile?.portfolio_link} target="_blank" rel="noopener noreferrer"><ExternalLink size="18px" color="grey"/></a>
+                                <a href={profile?.linkedin_link || ""} target="_blank" rel="noopener noreferrer"><Linkedin size="18px" color="grey"/></a>
+                                <a href={profile?.github_link || ""} target="_blank" rel="noopener noreferrer"><Github size="18px" color="grey"/></a>
+                                <a href={profile?.portfolio_link || ""} target="_blank" rel="noopener noreferrer"><ExternalLink size="18px" color="grey"/></a>
                             </div>
                         </div>
                     </div>
@@ -96,7 +96,7 @@ export const Overview = ({ user, profile }: { user: User, profile: Profile | nul
                         <img className="rounded-lg w-[50px] h-[50px] border" src="https://www4.instagantt.com/assets/63c5e29f1b5bc83fe0af2489/6424d753f8eb7a9e69c372fc_Gantt%20Chart%20Online%20Software%20Instagantt%20Ideation%202.webp" alt="" />
                         <div className="ml-[15px]">
                             <p className="font-[500]">{profile?.project_title}</p>
-                            <p className="text-[14px] hover:cursor-pointer hover:text-[blue]"><a href={profile?.project_link} target="_blank" rel="noopener noreferrer">Visit</a></p>
+                            <p className="text-[14px] hover:cursor-pointer hover:text-[blue]"><a href={profile?.project_link || ""} target="_blank" rel="noopener noreferrer">Visit</a></p>
                             <p className="ml-[15px] mt-[15px]">{profile?.project_description}</p>
                         </div>
                     </div>

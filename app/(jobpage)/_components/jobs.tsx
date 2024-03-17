@@ -1,8 +1,57 @@
 "use client";
 
 import { JobTile } from "@/components/JobTile";
+import { Jobs } from "@/lib/jobsobj";
+import { auth } from "@/providers/auth-provider";
+import { CircularProgress } from "@mui/material";
+import axios from "axios";
+import { useEffect, useState } from "react";
+import { useAuthState } from "react-firebase-hooks/auth";
 
 export const JobSection = () => {
+    const [loading, setLoading] = useState(true);
+    const [jobContent, setJobContent] = useState<Jobs[]>([]); // Initialize as an empty array instead of null
+    const [user] = useAuthState(auth);
+    const [page, setPage] = useState(1);
+    
+    useEffect(() => {
+        const handleScroll = () => {
+            if (
+                window.innerHeight + document.documentElement.scrollTop >= document.documentElement.scrollHeight / 1 &&
+                !loading
+            ) {
+                setPage(prevPage => prevPage + 1);
+            }
+        };
+    
+        window.addEventListener('scroll', handleScroll);
+        console.log('i am handle scroll fire once');
+        return () => window.removeEventListener('scroll', handleScroll);
+    }, [loading]);
+    
+    useEffect(() => {
+        axios.get(`http://127.0.0.1:8000/api/jobs/?page=${page}`)
+            .then((response) => {
+                console.log("Job data:", response.data.results);
+                setJobContent(prevJobContent => {
+                    if (prevJobContent === null) {
+                        return response.data.results;
+                    } else {
+                        return [...prevJobContent, ...response.data.results];
+                    }
+                });
+                setLoading(false);
+            })
+            .catch((error) => {
+                console.error("Error fetching data:", error);
+                setLoading(false);
+            });
+            console.log('i fire once');
+    }, [page]);
+
+    if (loading) {
+        return <div className="w-full flex justify-center"><CircularProgress size="25px" color="secondary" /></div>;
+    }
 
     return (
         <div className="lg:flex sm:block items-start justify-start max-w-[75rem] mt-[-50px] mb-[8rem] gap-10 text-start">
@@ -11,17 +60,17 @@ export const JobSection = () => {
                     <h1 className="text-[1.3rem] font-[600]">   
                         Trending Jobs<span className="text-[#E9357B]">:</span>
                     </h1>
-                    <JobTile/>
-                    <JobTile/>
-                    <JobTile/>
-                </div>
-                <div className="text-start">
-                    <h1 className="text-[1.3rem] font-[600]">   
-                        New Jobs<span className="text-[#E9357B]">:</span>
-                    </h1>
-                    <JobTile/>
-                    <JobTile/>
-                    <JobTile/>
+                    {jobContent?.map((job, index) => (
+                        <div key={index}>
+                            <JobTile
+                                title={job.title}
+                                company={job.company}
+                                job_type={job.job_type}
+                                location={job.location}
+                                industry={job.industry}
+                                remote_policy={job.remote_policy}                            />
+                        </div>
+                    ))}
                 </div>
             </div>
 
