@@ -27,7 +27,8 @@ const ProfileIdpage = () => {
                 .catch((error) => {
                     console.error("Error fetching data:", error);
                     setLoading(false);
-                });
+                }
+            );
         }
     }, [user?.uid]);
 

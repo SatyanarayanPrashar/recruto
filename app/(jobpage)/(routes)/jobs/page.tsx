@@ -13,9 +13,8 @@ const JobPage = () => {
   const [page, setPage] = useState(1);
   
   useEffect(() => {
-    // fetchInitialContent(page);
       const handleScroll = () => {
-        console.log("Scroll position:", document.documentElement.scrollTop);
+        // console.log("Scroll position:", document.documentElement.scrollTop);
           if (
               window.innerHeight + document.documentElement.scrollTop >= document.documentElement.scrollHeight / 1.2 
               // !loading
@@ -25,7 +24,6 @@ const JobPage = () => {
       };
       window.addEventListener('scroll', handleScroll);
       return () => {
-        console.log("Scroll event listener removed."); // Debugging line
         window.removeEventListener('scroll', handleScroll);
     };
   }, [ page]);
@@ -51,7 +49,7 @@ const JobPage = () => {
     <div className="min-h-full flex flex-col">
       <div className="flex flex-col items-center justify-center md:justify-start text-center gap-y-8 flex-1 px-6 pb-10">
         <HeroSection />
-          <JobSection jobContent={jobContent}/>   
+        <JobSection jobContent={jobContent}/>   
         <p>Designed and Built by Satya</p>
       </div>
     </div>

@@ -1,5 +1,5 @@
 export interface Jobs {
-    job_id: { id: string; name: string };
+    job_id: string | null;
     company_mailid: string | null;
     title: string | null;
     job_type: string | null;

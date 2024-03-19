@@ -1,6 +1,40 @@
 "use client";
 
-export const JobTile = ({ title, company, job_type, location, industry, remote_policy }: {title:string | null, company:string | null, job_type:string | null, location:string | null, industry:string | null, remote_policy:string | null}) => {
+import { auth } from "@/providers/auth-provider";
+import axios from "axios";
+import Link from "next/link";
+import { useAuthState } from "react-firebase-hooks/auth";
+import { toast } from "react-toastify";
+
+export const JobTile = ({job_id, page, title, company, job_type, location, industry, remote_policy }:
+    {   
+        job_id: string | null;
+        page:string | null;
+        title:string | null,
+        company:string | null,
+        job_type:string | null,
+        location:string | null,
+        industry:string | null,
+        remote_policy:string | null
+    }) => {
+    const [ user ] = useAuthState(auth);
+
+    const apply = async () => {
+        try {
+            const response = await axios.post(`http://127.0.0.1:8000/api/jobs/jobapplicants/`, {
+                job_id: job_id,
+                applicant_ids: user?.uid
+            }).then(
+                ()=>{
+                    toast.success("Applied")
+                }
+            );
+        } catch (error) {
+            toast.error("Something went wrong!")
+            console.error("Error creating profile:", error);
+        }
+    }
+
     return (
         <div className=" lg:w-[50rem] sm:w-[4rem] border rounded-[11px] p-5 my-5 shadow-[0px_0px_11.2px_1px_#DDDDDD]">
             <div className="flex gap-5">
@@ -28,8 +62,17 @@ export const JobTile = ({ title, company, job_type, location, industry, remote_p
                     </div>
                 </div>
                 <div className="flex gap-5 lg:mt-0 sm:mt-5">
-                    <button className="flex-2 px-5 py-1 rounded-[7px] border h-[35px] text-[14px] text-[#4D4D4D] font-[500]"> Check your Compatibility </button>
-                    <button className="flex-1 px-5 py-1 bg-[#928CD2] rounded-[7px] h-[35px] text-white text-[14px] font-[500]"> Apply </button>
+                    {page=="jobs" ? 
+                        <button className="flex-2 px-5 py-1 rounded-[7px] border h-[35px] text-[14px] text-[#4D4D4D] font-[500]">
+                            <Link href={`/jobs/${job_id}`} className="mr-2">
+                                View Applicants
+                            </Link>
+                        </button>
+                        : <div></div>
+                    }
+                    <button className="flex-1 px-5 py-1 bg-[#928CD2] rounded-[7px] h-[35px] text-white text-[14px] font-[500]" onClick={
+                        ()=> {apply()}
+                    }> Apply </button>
                 </div>
             </div>
         </div>

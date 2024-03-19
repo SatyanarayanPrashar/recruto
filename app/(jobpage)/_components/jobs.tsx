@@ -13,15 +13,18 @@ export const JobSection = ({ jobContent }: { jobContent: any }) => {
                     <h1 className="text-[1.3rem] font-[600]">   
                         Trending Jobs<span className="text-[#E9357B]">:</span>
                     </h1>
-                    {jobContent?.map((job: { title: string | null; company: string | null; job_type: string | null; location: string | null; industry: string | null; remote_policy: string | null; }, index: Key | null | undefined) => (
+                    {jobContent?.map((job: {job_id: string | null; title: string | null; company: string | null; job_type: string | null; location: string | null; industry: string | null; remote_policy: string | null; }, index: Key | null | undefined) => (
                         <div key={index}>
                             <JobTile
+                                job_id={job.job_id}
+                                page="jobs"
                                 title={job.title}
                                 company={job.company}
                                 job_type={job.job_type}
                                 location={job.location}
                                 industry={job.industry}
-                                remote_policy={job.remote_policy}                            />
+                                remote_policy={job.remote_policy}
+                            />
                         </div>
                     ))}
                 </div>
